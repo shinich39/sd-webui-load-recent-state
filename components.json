@@ -18,6 +18,13 @@
   "txt2img_seed_resize_from_w",
   "txt2img_seed_resize_from_h",
 
+  "txt2img_hr_upscaler",
+  "txt2img_hires_steps",
+  "txt2img_denoising_strength",
+  "txt2img_hr_scale",
+  "txt2img_hr_resize_x",
+  "txt2img_hr_resize_y",
+
   "img2img_prompt",
   "img2img_neg_prompt",
   "img2img_cfg_scale",
