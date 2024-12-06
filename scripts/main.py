@@ -12,7 +12,7 @@ from fastapi import FastAPI, Request
 
 # /extensions/sd-webui-load-recent-state
 DIR_PATH = scripts.basedir()
-STATE_PATH = os.path.join(DIR_PATH, "state.json")
+STATES_PATH = os.path.join(DIR_PATH, "states.json")
 COMP_PATH = os.path.join(DIR_PATH, "components.json")
 
 def read_json(p, defaultValue):
@@ -44,13 +44,13 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
   async def init():
     return {
       "componentIds": read_json(COMP_PATH, []),
-      "state": read_json(STATE_PATH, {}),
+      "states": read_json(STATES_PATH, {}),
     }
   
   @app.post("/shinich39/lrs/save")
   async def _update_state(req: Request):
     data = await req.json()
-    save_json(STATE_PATH, data)
+    save_json(STATES_PATH, data)
 
 class Script(scripts.Script):
   def __init__(self):

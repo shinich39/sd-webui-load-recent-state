@@ -15,11 +15,11 @@ const COMPONENTS = [
 // console.log(gradioApp());
 // console.log(gradio_config);
 
-async function loadState() {
+async function loadStates() {
   return await receive("/shinich39/lrs/load");
 }
 
-async function saveState(data) {
+async function saveStates(data) {
   return await send("/shinich39/lrs/save", data);
 }
 
@@ -33,8 +33,8 @@ let currentStates;
 
   const {
     componentIds,
-    state,
-  } = await loadState();
+    states,
+  } = await loadStates();
   
   for (const id of componentIds) {
     const elem = document.getElementById(id);
@@ -66,7 +66,7 @@ let currentStates;
   }
   // console.log("Components loaded", COMPONENTS);
 
-  currentStates = state;
+  currentStates = states;
   // console.log("Current state loaded", currentStates);
 
   // await wait(1024);
@@ -78,7 +78,7 @@ let currentStates;
       const data = getInputValues();
       // console.log("State:", data);
       currentStates[getCkptName()] = data;
-      await saveState(currentStates);
+      await saveStates(currentStates);
       // console.log("State saved");
     });
   });
